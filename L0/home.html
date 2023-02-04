@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter order id"> <button onclick="order()">Submit</button>
+    <br /> <br />
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</body>
+</html>
+
+<script>
+    async function order() {
+        if (document.querySelector('input').value != "") {
+            let id = document.querySelector('input').value
+            document.querySelector('input').value = ""
+            window.location.href = "http://127.0.0.1:8080/order?id=" + id
+        } else if (document.querySelector('input').value == "" && document.querySelector("textarea").value != "") {
+            response = await fetch("http://127.0.0.1:8080/order", {
+                method: "POST",
+                body: document.querySelector("textarea").value
+            });
+
+            document.querySelector('textarea').value = ""
+        }
+    }
+
+    document.querySelector('input').value = ""
+</script>
